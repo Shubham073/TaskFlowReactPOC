@@ -1,0 +1,66 @@
+{
+  "name": "taskflow",
+  "version": "1.0.0",
+  "description": "Smart Task Management Application - A React TypeScript project demonstrating modern development practices",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.1.6",
+    "@mui/material": "^6.1.6",
+    "@mui/x-charts": "^7.22.2",
+    "@mui/x-date-pickers": "^7.22.2",
+    "axios": "^1.7.9",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^11.11.17",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "react-scripts": "5.0.1",
+    "recharts": "^2.15.4",
+    "web-vitals": "^4.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.6",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "typescript": "^4.9.5"
+  },
+  "resolutions": {
+    "ajv": "^8.12.0"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "material-ui",
+    "task-management",
+    "dashboard",
+    "authentication"
+  ],
+  "author": "TaskFlow Team",
+  "license": "MIT",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
