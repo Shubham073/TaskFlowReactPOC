@@ -69,7 +69,6 @@ const ProfilePage: React.FC = () => {
       </motion.div>
 
       <Grid container spacing={3}>
-        {/* Profile Information */}
         <Grid item xs={12} md={6}>
           <motion.div
             variants={cardVariants}
@@ -77,8 +76,8 @@ const ProfilePage: React.FC = () => {
             animate="visible"
             transition={{ delay: 0.1 }}
           >
-            <Card>
-              <CardContent>
+            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Box display="flex" alignItems="center" justifyContent="space-between" mb={3}>
                   <Typography variant="h6" fontWeight="bold">
                     Profile Information
@@ -158,7 +157,6 @@ const ProfilePage: React.FC = () => {
           </motion.div>
         </Grid>
 
-        {/* Settings */}
         <Grid item xs={12} md={6}>
           <motion.div
             variants={cardVariants}
@@ -166,8 +164,8 @@ const ProfilePage: React.FC = () => {
             animate="visible"
             transition={{ delay: 0.2 }}
           >
-            <Card>
-              <CardContent>
+            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Box display="flex" alignItems="center" mb={3}>
                   <Settings sx={{ mr: 1 }} />
                   <Typography variant="h6" fontWeight="bold">
@@ -238,7 +236,6 @@ const ProfilePage: React.FC = () => {
           </motion.div>
         </Grid>
 
-        {/* Quick Stats */}
         <Grid item xs={12}>
           <motion.div
             variants={cardVariants}
@@ -289,7 +286,6 @@ const ProfilePage: React.FC = () => {
         </Grid>
       </Grid>
 
-      {/* Edit Profile Dialog */}
       <Dialog open={editOpen} onClose={handleEditClose} maxWidth="sm" fullWidth>
         <DialogTitle>Edit Profile</DialogTitle>
         <DialogContent>

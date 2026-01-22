@@ -4,19 +4,19 @@ import { CssBaseline } from '@mui/material';
 import { getTheme } from '../utils/theme';
 import { ThemeAction } from '../types';
 
-// Theme state interface
+
 interface ThemeState {
   mode: 'light' | 'dark';
   theme: Theme;
 }
 
-// Initial state
+
 const initialState: ThemeState = {
   mode: 'light',
   theme: getTheme('light'),
 };
 
-// Theme reducer
+
 const themeReducer = (state: ThemeState, action: ThemeAction): ThemeState => {
   switch (action.type) {
     case 'TOGGLE_THEME':
@@ -35,7 +35,7 @@ const themeReducer = (state: ThemeState, action: ThemeAction): ThemeState => {
   }
 };
 
-// Theme context
+
 interface ThemeContextType {
   state: ThemeState;
   dispatch: React.Dispatch<ThemeAction>;
@@ -45,7 +45,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-// Theme provider
+
 interface ThemeProviderProps {
   children: ReactNode;
 }
@@ -61,7 +61,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     dispatch({ type: 'SET_THEME', payload: mode });
   };
 
-  // Initialize theme from localStorage
+  
   React.useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
     if (savedTheme) {
@@ -69,7 +69,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     }
   }, []);
 
-  // Save theme to localStorage
+  
   React.useEffect(() => {
     localStorage.setItem('theme', state.mode);
   }, [state.mode]);
@@ -84,7 +84,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   );
 };
 
-// Custom hook to use theme context
+
 export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
   if (!context) {

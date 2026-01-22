@@ -26,7 +26,7 @@ const LoginPage: React.FC = () => {
   
   const { login, isAuthenticated, isLoading } = useAuthActions();
 
-  // Redirect if already authenticated
+  
   if (isAuthenticated) {
     return <Navigate to="/dashboard" replace />;
   }

@@ -115,6 +115,9 @@ const DashboardPage: React.FC = () => {
             <Card 
               onClick={navigateToAllTasks}
               sx={{ 
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
                 borderRadius: 2, 
                 background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                 cursor: 'pointer',
@@ -125,7 +128,7 @@ const DashboardPage: React.FC = () => {
                 }
               }}
             >
-              <CardContent>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Box display="flex" alignItems="center" justifyContent="space-between">
                   <Box>
                     <Typography color="white" gutterBottom>
@@ -147,6 +150,9 @@ const DashboardPage: React.FC = () => {
             <Card 
               onClick={navigateToCompletedTasks}
               sx={{ 
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
                 borderRadius: 2, 
                 background: 'linear-gradient(135deg, #59ce8f 0%, #4caf50 100%)',
                 cursor: 'pointer',
@@ -157,7 +163,7 @@ const DashboardPage: React.FC = () => {
                 }
               }}
             >
-              <CardContent>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Box display="flex" alignItems="center" justifyContent="space-between">
                   <Box>
                     <Typography color="white" gutterBottom>
@@ -179,6 +185,9 @@ const DashboardPage: React.FC = () => {
             <Card 
               onClick={navigateToPendingTasks}
               sx={{ 
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
                 borderRadius: 2, 
                 background: 'linear-gradient(135deg, #ff7043 0%, #ff5722 100%)',
                 cursor: 'pointer',
@@ -189,7 +198,7 @@ const DashboardPage: React.FC = () => {
                 }
               }}
             >
-              <CardContent>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Box display="flex" alignItems="center" justifyContent="space-between">
                   <Box>
                     <Typography color="white" gutterBottom>
@@ -211,6 +220,9 @@ const DashboardPage: React.FC = () => {
             <Card 
               onClick={navigateToCompletedTasks}
               sx={{ 
+                height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
                 borderRadius: 2, 
                 background: 'linear-gradient(135deg, #42a5f5 0%, #2196f3 100%)',
                 cursor: 'pointer',
@@ -221,7 +233,7 @@ const DashboardPage: React.FC = () => {
                 }
               }}
             >
-              <CardContent>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Box display="flex" alignItems="center" justifyContent="space-between">
                   <Box>
                     <Typography color="white" gutterBottom>
@@ -271,11 +283,11 @@ const DashboardPage: React.FC = () => {
         </Grid>
       </Grid>
 
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={4} >
-          <motion.div variants={cardVariants} initial="hidden" animate="visible" transition={{ delay: 0.6 }}>
-            <Card sx={{ borderRadius: 2, height: '100%' }}>
-              <CardContent>
+      <Grid container spacing={3} sx={{ alignItems: 'stretch' }}>
+        <Grid item xs={12} md={4} sx={{ display: 'flex' }}>
+          <motion.div variants={cardVariants} initial="hidden" animate="visible" transition={{ delay: 0.6 }} style={{ width: '100%', display: 'flex' }}>
+            <Card sx={{ borderRadius: 2, height: '100%', display: 'flex', flexDirection: 'column', width: '100%' }}>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Typography variant="h6" gutterBottom>
                   Tasks by Priority
                 </Typography>
@@ -323,10 +335,10 @@ const DashboardPage: React.FC = () => {
           </motion.div>
         </Grid>
 
-        <Grid item xs={12} md={4}>
-          <motion.div variants={cardVariants} initial="hidden" animate="visible" transition={{ delay: 0.7 }}>
-            <Card sx={{ borderRadius: 2, height: '100%' }}>
-              <CardContent>
+        <Grid item xs={12} md={4} sx={{ display: 'flex' }}>
+          <motion.div variants={cardVariants} initial="hidden" animate="visible" transition={{ delay: 0.7 }} style={{ width: '100%', display: 'flex' }}>
+            <Card sx={{ borderRadius: 2, height: '100%', display: 'flex', flexDirection: 'column', width: '100%' }}>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
                   <Typography variant="h6">
                     Tasks by Category
@@ -386,13 +398,16 @@ const DashboardPage: React.FC = () => {
           </motion.div>
         </Grid>
 
-        <Grid item xs={12} md={4}>
-          <motion.div variants={cardVariants} initial="hidden" animate="visible" transition={{ delay: 0.8 }}>
+        <Grid item xs={12} md={4} sx={{ display: 'flex' }}>
+          <motion.div variants={cardVariants} initial="hidden" animate="visible" transition={{ delay: 0.8 }} style={{ width: '100%', display: 'flex' }}>
             <Card 
               onClick={navigateToAllTasks}
               sx={{ 
                 borderRadius: 2, 
                 height: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
                 cursor: 'pointer',
                 transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
                 '&:hover': {
@@ -401,7 +416,7 @@ const DashboardPage: React.FC = () => {
                 }
               }}
             >
-              <CardContent>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Typography variant="h6" gutterBottom>
                   Recent Tasks
                 </Typography>
@@ -466,7 +481,7 @@ const DashboardPage: React.FC = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    ⚠️ Overdue Tasks ({overdueTasks.length})
+                    Overdue Tasks ({overdueTasks.length})
                   </Typography>
                   <List>
                     {overdueTasks.slice(0, 3).map((task) => (
@@ -506,7 +521,7 @@ const DashboardPage: React.FC = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    🔥 High Priority Tasks ({highPriorityTasks.length})
+                    High Priority Tasks ({highPriorityTasks.length})
                   </Typography>
                   <List>
                     {highPriorityTasks.slice(0, 3).map((task) => (

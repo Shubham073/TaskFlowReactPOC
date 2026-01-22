@@ -4,7 +4,6 @@ import { useTask } from '../context/TaskContext';
 import { authService, taskService, userService, categoryService } from '../services/api';
 import { LoginData, CreateTaskData, UpdateTaskData, CreateCategoryData, UpdateCategoryData, Task, TaskFilters } from '../types';
 
-// Custom hook for authentication
 export const useAuthActions = () => {
   const { state, dispatch, login, logout } = useAuth();
 
@@ -27,7 +26,6 @@ export const useAuthActions = () => {
       }
       logout();
     } catch (error) {
-      // Even if logout fails on server, we still logout locally
       logout();
     }
   };
@@ -39,7 +37,6 @@ export const useAuthActions = () => {
   };
 };
 
-// Custom hook for task operations
 export const useTaskActions = () => {
   const { state, dispatch } = useTask();
   const { state: authState } = useAuth();
@@ -161,7 +158,6 @@ export const useTaskActions = () => {
   };
 };
 
-// Custom hook for local storage
 export const useLocalStorage = <T>(key: string, initialValue: T) => {
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
@@ -186,7 +182,6 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
   return [storedValue, setValue] as const;
 };
 
-// Custom hook for debounced values
 export const useDebounce = <T>(value: T, delay: number) => {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
@@ -203,7 +198,6 @@ export const useDebounce = <T>(value: T, delay: number) => {
   return debouncedValue;
 };
 
-// Custom hook for previous value
 export const usePrevious = <T>(value: T): T | undefined => {
   const ref = useState<T>();
   useEffect(() => {
@@ -212,7 +206,6 @@ export const usePrevious = <T>(value: T): T | undefined => {
   return ref[0];
 };
 
-// Custom hook for media query
 export const useMediaQuery = (query: string) => {
   const [matches, setMatches] = useState(false);
 

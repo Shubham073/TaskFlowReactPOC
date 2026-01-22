@@ -63,7 +63,9 @@ export type AuthAction =
   | { type: 'LOGIN_START' }
   | { type: 'LOGIN_SUCCESS'; payload: User }
   | { type: 'LOGIN_FAILURE'; payload: string }
-  | { type: 'LOGOUT' };
+  | { type: 'LOGOUT' }
+  | { type: 'SESSION_EXPIRED' }
+  | { type: 'UNAUTHORIZED_ACCESS'; payload?: string };
 
 export type TaskAction =
   | { type: 'FETCH_TASKS_START' }

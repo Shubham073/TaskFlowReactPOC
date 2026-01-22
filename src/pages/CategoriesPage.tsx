@@ -34,6 +34,7 @@ import { motion } from 'framer-motion';
 import { useTaskActions } from '../hooks';
 import { useAuth } from '../context/AuthContext';
 import { Category, CreateCategoryData, UpdateCategoryData } from '../types';
+import { AdminOnly } from '../components/withPermission';
 
 const CategoriesPage: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -172,12 +173,11 @@ const CategoriesPage: React.FC = () => {
         </motion.div>
       )}
 
-      {/* Categories Overview */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
         <Grid item xs={12} sm={6} md={3}>
           <motion.div variants={cardVariants} initial="hidden" animate="visible" transition={{ delay: 0.1 }}>
-            <Card sx={{ borderRadius: 2, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
-              <CardContent>
+            <Card sx={{ borderRadius: 2, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Box display="flex" alignItems="center" justifyContent="space-between">
                   <Box>
                     <Typography color="white" gutterBottom>
@@ -196,8 +196,8 @@ const CategoriesPage: React.FC = () => {
 
         <Grid item xs={12} sm={6} md={3}>
           <motion.div variants={cardVariants} initial="hidden" animate="visible" transition={{ delay: 0.2 }}>
-            <Card sx={{ borderRadius: 2, background: 'linear-gradient(135deg, #59ce8f 0%, #4caf50 100%)' }}>
-              <CardContent>
+            <Card sx={{ borderRadius: 2, background: 'linear-gradient(135deg, #59ce8f 0%, #4caf50 100%)', height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Box display="flex" alignItems="center" justifyContent="space-between">
                   <Box>
                     <Typography color="white" gutterBottom>
@@ -215,7 +215,6 @@ const CategoriesPage: React.FC = () => {
         </Grid>
       </Grid>
 
-      {/* Categories List */}
       <Grid container spacing={3}>
         <Grid item xs={12} md={8}>
           <motion.div
@@ -308,7 +307,6 @@ const CategoriesPage: React.FC = () => {
           </motion.div>
         </Grid>
 
-        {/* Category Usage Statistics */}
         <Grid item xs={12} md={4}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -350,7 +348,6 @@ const CategoriesPage: React.FC = () => {
         </Grid>
       </Grid>
 
-      {/* Floating Action Button for Mobile */}
       {canManageCategories && (
         <Fab
           color="primary"
@@ -368,7 +365,6 @@ const CategoriesPage: React.FC = () => {
         </Fab>
       )}
 
-      {/* Add/Edit Category Dialog */}
       <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
         <DialogTitle>
           {editingCategory ? 'Edit Category' : 'Create New Category'}
@@ -400,7 +396,6 @@ const CategoriesPage: React.FC = () => {
         </DialogActions>
       </Dialog>
 
-      {/* Snackbar for notifications */}
       <Snackbar
         open={snackbar.open}
         autoHideDuration={6000}

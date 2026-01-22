@@ -49,7 +49,7 @@ const Layout: React.FC = () => {
   const { state: authState, logout } = useAuth();
   const { state: themeState, toggleTheme } = useAppTheme();
 
-  // Handle responsive sidebar state
+  
   React.useEffect(() => {
     setSidebarOpen(false);
   }, [isMobile]);
@@ -85,11 +85,7 @@ const Layout: React.FC = () => {
           <Typography variant="h6" noWrap component="div">
             Menu
           </Typography>
-          {/* {isMobile && (
-            <IconButton onClick={handleDrawerToggle} size="small">
-              <MenuIcon />
-            </IconButton>
-          )} */}
+          {}
         </Box>
       </Toolbar>
       <Divider />
@@ -144,7 +140,6 @@ const Layout: React.FC = () => {
         }}
       >
         <Toolbar>
-          {/* Mobile Menu Button */}
           <IconButton
             color="inherit"
             aria-label="toggle drawer"
@@ -159,7 +154,6 @@ const Layout: React.FC = () => {
             TaskFlow
           </Typography>
           
-          {/* Desktop Navigation */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', flexGrow: 1 }}>
             {menuItems.map((item) => (
               <Button
@@ -206,7 +200,6 @@ const Layout: React.FC = () => {
           flexShrink: 0,
         }}
       >
-        {/* Mobile Drawer Only */}
         <Drawer
           variant="temporary"
           open={sidebarOpen && isMobile}
@@ -219,7 +212,7 @@ const Layout: React.FC = () => {
             '& .MuiDrawer-paper': { 
               boxSizing: 'border-box', 
               width: drawerWidth,
-              top: 64, // AppBar height
+              top: 64, 
               height: 'calc(100vh - 64px)',
             },
           }}

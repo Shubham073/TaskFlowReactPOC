@@ -1,10 +1,9 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse, AxiosError } from 'axios';
 import { Task, User, Category, CreateTaskData, UpdateTaskData, CreateCategoryData, UpdateCategoryData, LoginData, TaskFilters, ApiResponse } from '../types';
+import { handleUnauthorized, handleSessionExpired, clearAuthData } from './authService';
 
-// Real API base URL pointing to your server
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
 
-// Create axios instance
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
@@ -12,7 +11,6 @@ const api = axios.create({
   },
 });
 
-// Request interceptor to add auth token
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -21,28 +19,52 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Response interceptor for error handling
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem('token');
-      window.location.href = '/login';
+  (error: AxiosError) => {
+    const status = error.response?.status;
+    const responseData = error.response?.data as any;
+    const message = responseData?.message || error.message || 'An error occurred';
+
+    switch (status) {
+      case 401:
+        console.warn('Session expired - redirecting to login');
+        clearAuthData();
+        handleSessionExpired();
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 100);
+        break;
+        
+      case 403:
+        console.warn('Access forbidden:', message);
+        handleUnauthorized(message);
+        break;
+        
+      case 404:
+        console.warn('Resource not found:', error.config?.url);
+        break;
+        
+      case 500:
+        console.error('Server error:', message);
+        break;
+        
+      default:
+        console.error('API Error:', message);
     }
+    
     return Promise.reject(error);
   }
 );
 
-// Authentication API
 export const authAPI = {
   login: async (credentials: LoginData): Promise<{ user: User; token: string }> => {
     try {
       const response: AxiosResponse<{ token: string; role: string }> = await api.post('/auth/login', credentials);
       
-      // Transform server response to match frontend expectations
       const user: User = {
-        id: '1', // Server doesn't return ID, using default
-        username: credentials.username, // Use the submitted username
+        id: '1', 
+        username: credentials.username, 
         role: response.data.role as 'admin' | 'user',
       };
       
@@ -65,7 +87,6 @@ export const authAPI = {
   },
 };
 
-// Users API
 export const usersAPI = {
   getUsers: async (username?: string, role?: string): Promise<User[]> => {
     try {
@@ -81,7 +102,6 @@ export const usersAPI = {
   },
 };
 
-// Tasks API
 export const tasksAPI = {
   getTasks: async (filters: TaskFilters = {}): Promise<{ tasks: Task[]; total: number }> => {
     try {
@@ -136,7 +156,6 @@ export const tasksAPI = {
   },
 };
 
-// Categories API
 export const categoriesAPI = {
   getCategories: async (): Promise<Category[]> => {
     try {
@@ -174,7 +193,6 @@ export const categoriesAPI = {
   },
 };
 
-// Export the real APIs for use in the application
 export const taskService = tasksAPI;
 export const authService = authAPI;
 export const userService = usersAPI;

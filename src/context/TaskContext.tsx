@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, ReactNode } from 'react';
 import { TaskState, TaskAction, Task, TaskStats } from '../types';
 
-// Initial state
+
 const initialState: TaskState = {
   tasks: [],
   users: [],
@@ -22,7 +22,7 @@ const initialState: TaskState = {
   },
 };
 
-// Calculate stats helper
+
 const calculateStats = (tasks: Task[]): TaskStats => {
   const total = tasks.length;
   const completed = tasks.filter(task => task.completed).length;
@@ -51,7 +51,7 @@ const calculateStats = (tasks: Task[]): TaskStats => {
   };
 };
 
-// Task reducer
+
 const taskReducer = (state: TaskState, action: TaskAction): TaskState => {
   switch (action.type) {
     case 'FETCH_TASKS_START':
@@ -140,7 +140,7 @@ const taskReducer = (state: TaskState, action: TaskAction): TaskState => {
   }
 };
 
-// Task context
+
 interface TaskContextType {
   state: TaskState;
   dispatch: React.Dispatch<TaskAction>;
@@ -148,7 +148,7 @@ interface TaskContextType {
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
 
-// Task provider
+
 interface TaskProviderProps {
   children: ReactNode;
 }
@@ -163,7 +163,7 @@ export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
   );
 };
 
-// Custom hook to use task context
+
 export const useTask = (): TaskContextType => {
   const context = useContext(TaskContext);
   if (!context) {
